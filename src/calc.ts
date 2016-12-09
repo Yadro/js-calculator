@@ -101,7 +101,11 @@ function calc(polsk: any[]) {
 
   input.addEventListener('input', () => {
     try {
-      result.innerText = calc(toPolNotation(parse(input.value)));
+      if (input.value) {
+        result.innerText = calc(toPolNotation(parse(input.value)));
+      } else {
+        result.innerText = '';
+      }
     } catch (e) {
       result.innerText = e.message;
     }
