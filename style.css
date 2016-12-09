@@ -7,8 +7,11 @@
     width: 500px;
     margin: 200px auto;
 }
-.container div,
-.container input{
+#header {
+    font-size: 25px;
+}
+.container #res,
+.container input {
     margin-top: 10px;
     padding: 5px;
 }
