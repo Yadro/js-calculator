@@ -6,7 +6,7 @@ function calc(input) {
     let items = [];
     let fragment = str;
     let res: RegExpMatchArray;
-    while ((res = /(\d+|[+\-*/()])/g.exec(fragment))) {
+    while ((res = /(\d+(\.\d+)?|[+\-*/()])/g.exec(fragment))) {
       if (res.index != 0) {
         throw new SyntaxError('Unexpected character: ' + fragment.substr(0, res.index));
       }
