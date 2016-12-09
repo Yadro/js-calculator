@@ -1,4 +1,3 @@
-let input = '(6+10-4)/(1+1*2)+1';
 
 function parse(str: string) {
   str = str.split(' ').join('');
@@ -7,7 +6,7 @@ function parse(str: string) {
   let res: RegExpMatchArray;
   while ((res = /(\d+|[+\-*/()])/g.exec(fragment))) {
     if (res.index != 0) {
-      throw new SyntaxError('Incorrect character: ' + fragment.substr(0, res.index));
+      throw new SyntaxError('Unexpected character: ' + fragment.substr(0, res.index));
     }
     if (!isNaN(+res[0])) {
       items.push(+res[0]);
@@ -17,7 +16,7 @@ function parse(str: string) {
     fragment = fragment.substr(res[0].length);
   }
   if (fragment.length) {
-    throw new SyntaxError('Incorrect character: ' + fragment);
+    throw new SyntaxError('Unexpected character: ' + fragment);
   }
   return items;
 }
@@ -91,6 +90,9 @@ function calc(polsk: any[]) {
     } else {
       throw new Error('Wrong input');
     }
+  }
+  if (res.length != 1) {
+    throw new Error('Wrong input');
   }
   return res.pop();
 }
