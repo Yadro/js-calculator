@@ -37,10 +37,10 @@ function toPolNotation(arr: any[]) {
     } else {
       let opLast = operation[operation.length - 1];
 
-      if (token == '(') {
+      if (token === '(') {
         operation.push(token);
       }
-      else if (token == ')') {
+      else if (token === ')') {
         let buf2;
         while (operation.length && (buf2 = operation.pop()) != '(') {
           res.push(buf2);
@@ -49,7 +49,7 @@ function toPolNotation(arr: any[]) {
           throw new Error(`Missing '('`);
         }
       }
-      else if (typeof opLast == "string" && prior[opLast] >= prior[token]) {
+      else if (typeof opLast === "string" && prior[opLast] >= prior[token]) {
         res.push(operation.pop());
         operation.push(token);
       } else {
@@ -83,7 +83,7 @@ function calc(polsk: any[]) {
   let res = [];
   while (polsk.length) {
     let el = polsk.shift();
-    if (typeof el == "number") {
+    if (typeof el === "number") {
       res.push(el);
     } else if (res.length > 1) {
       res = cmCalc(res, el)
