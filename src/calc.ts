@@ -6,12 +6,16 @@ function calc(input) {
     let items = [];
     let fragment = str;
     let res: RegExpMatchArray;
-    while ((res = /(\d+(\.\d+)?|[+\-*/()])/g.exec(fragment))) {
+    while ((res = /(-?\d+(\.\d+)?|[+\-*/()])/g.exec(fragment))) {
       if (res.index != 0) {
         throw new SyntaxError('Unexpected character: ' + fragment.substr(0, res.index));
       }
-      if (!isNaN(+res[0])) {
-        items.push(+res[0]);
+      const num = +res[0];
+      if (!isNaN(num)) {
+        if (num < 0 && typeof items[items.length - 1] === "number") {
+          items.push('+');
+        }
+        items.push(num);
       } else {
         items.push(res[0]);
       }
